@@ -3,6 +3,7 @@ package app.view;
 import app.controller.Home;
 import app.controller.Login;
 import app.controller.SignUp;
+import app.controller.SignUpSave;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -50,7 +51,8 @@ public class RegisterView extends BorderPane {
     }
 
     private void addActions() {
-        btnlogovanje.setOnAction(new Home(this));
+       // btnlogovanje.setOnAction(new Home(this));
+        btnlogovanje.setOnAction(new SignUpSave(this));
     }
 
     public TextField getTflogovanje() {
