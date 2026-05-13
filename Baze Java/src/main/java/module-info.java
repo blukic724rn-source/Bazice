@@ -3,5 +3,6 @@ module artikli {
     requires javafx.graphics;
     requires javafx.base;
     requires java.desktop;
+    requires java.sql;
     exports app;
 }
