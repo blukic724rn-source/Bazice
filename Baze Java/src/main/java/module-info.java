@@ -5,4 +5,5 @@ module artikli {
     requires java.desktop;
     requires java.sql;
     exports app;
+    opens app.classes to javafx.base;
 }

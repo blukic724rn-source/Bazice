@@ -1,26 +1,25 @@
 package app.controller;
 
 import app.App;
+import app.view.EksperimentiView;
 import app.view.HomeView;
-import app.view.RegisterView;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-public class Home implements EventHandler<ActionEvent> {
+public class Eksperimentcnt implements EventHandler<ActionEvent> {
+    private HomeView home;
 
-    public Home() {
+    public Eksperimentcnt (HomeView h) {
+        this.home = h;
     }
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        System.out.println("Prozoric");
-
         App.window.close();
         App.window = new Stage();
-        App.window.setScene(new Scene(new HomeView(), 500, 700));
+        App.window.setScene(new Scene(new EksperimentiView(), 500, 500));
         App.window.show();
     }
 }
