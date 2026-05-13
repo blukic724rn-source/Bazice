@@ -1,6 +1,8 @@
 package app.view;
 
 import app.controller.Eksperimentcnt;
+import app.controller.Sesijacnt;
+import app.controller.Statuscnt;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -42,5 +44,7 @@ public class HomeView extends BorderPane {
 
     private void addActions() {
         btnEksperimenti.setOnAction(new Eksperimentcnt(this));
+        btnEksperimenti2.setOnAction(new Statuscnt());
+        btnSesija.setOnAction(new Sesijacnt());
     }
 }
