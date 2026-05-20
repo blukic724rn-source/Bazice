@@ -56,6 +56,8 @@ public class Login implements EventHandler<ActionEvent> {
 
         if (ulogovan) {
             System.out.println("Ulogovan");
+            String brojStr = korisnik.replaceAll("[^0-9]", "");
+            App.id_usern = Integer.parseInt(brojStr);
             App.window.close();
             App.window = new Stage();
             App.window.setScene(new Scene(new HomeView(), 500, 700));

@@ -12,6 +12,7 @@ import java.sql.Connection;
 public class App extends Application {
 
     public static Stage window;
+    public static int id_usern;
 
     @Override
     public void start(Stage stage) throws Exception {

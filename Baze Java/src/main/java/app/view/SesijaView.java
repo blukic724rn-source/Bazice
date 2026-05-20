@@ -1,5 +1,6 @@
 package app.view;
 
+import app.App;
 import app.Connect;
 import app.classes.Eksperiment;
 import app.classes.Sesija;
@@ -90,13 +91,14 @@ public class SesijaView extends BorderPane {
         return e -> {
             ObservableList<Sesija> select = tv.getSelectionModel().getSelectedItems();
 
-            String sql = "DELETE FROM Sesija WHERE id_sesija = ?";
+            String sql = "DELETE FROM Sesija WHERE id_sesija = ? AND id_izvodjenje IN (SELECT iz.id_iz FROM Izvodjenje_Izvodjac iz WHERE iz.id_izv = ?)";
 
             try {
                 Connection con = Connect.getKonekcija();
                 PreparedStatement ps = con.prepareStatement(sql);
                 for (Sesija s : select) {
                     ps.setInt(1, s.getId());
+                    ps.setInt(2, App.id_usern);
                     ps.executeUpdate();
                 }
                 con.close();
@@ -110,11 +112,12 @@ public class SesijaView extends BorderPane {
     private void loadInfos() {
 
         ObservableList<Sesija> list = FXCollections.observableArrayList();
-        String sql = "SELECT * FROM Sesija";
+        String sql = "SELECT * FROM Sesija s JOIN Izvodjenje i ON s.id_izvodjenje = i.id_izvodjenje JOIN Izvodjenje_Izvodjac iz ON i.id_izvodjenje = iz.id_iz WHERE iz.id_izv = ?";
         try {
             Connection con = Connect.getKonekcija();
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(sql);
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, App.id_usern);
+            ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 list.add(new Sesija(rs.getInt("id_sesija"), rs.getString("datum_pocetka"), rs.getString("datum_zavrsetka"), rs.getInt("kolicina_podataka"), rs.getInt("procesorski_sati")));
             }
