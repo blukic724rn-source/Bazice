@@ -104,8 +104,11 @@ public class EksperimentiView extends BorderPane {
 
     private void loadInfos() {
         ObservableList<Eksperiment> list = FXCollections.observableArrayList();
-        String sql = "SELECT * FROM Eksperiment e JOIN Izvodjenje i ON e.id_eksperiment = i.id_eksperiment";
-
+        String sql = "SELECT e.id_eksperiment, e.naziv, e.tip, " + "i.status " + "FROM Eksperiment e " +
+                "JOIN Izvodjenje i ON e.id_eksperiment = i.id_eksperiment " +
+                "WHERE i.id_izvodjenje = (" +
+                "SELECT MAX(id_izvodjenje) FROM Izvodjenje " +
+                "WHERE id_eksperiment = e.id_eksperiment)";
         try {
             Connection con = Connect.getKonekcija();
             PreparedStatement ps = con.prepareStatement(sql);
