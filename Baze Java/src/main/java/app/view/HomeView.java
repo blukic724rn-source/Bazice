@@ -1,6 +1,7 @@
 package app.view;
 
 import app.controller.Eksperimentcnt;
+import app.controller.MongoCnt;
 import app.controller.Sesijacnt;
 import app.controller.Statuscnt;
 import javafx.geometry.Insets;
@@ -17,6 +18,7 @@ public class HomeView extends BorderPane {
     private Button btnEksperimenti2;
     private Button btnSesija;
     private HBox hbox;
+    private Button btnMongo;
 
     public HomeView() {
         initElements();
@@ -29,7 +31,8 @@ public class HomeView extends BorderPane {
         btnEksperimenti = new Button("Forma 1");
         btnEksperimenti2 = new Button("Forma 2");
         btnSesija = new Button("Forma 3");
-        hbox = new HBox(btnEksperimenti, btnEksperimenti2, btnSesija);
+        btnMongo = new Button("Forma 4");
+        hbox = new HBox(btnEksperimenti, btnEksperimenti2, btnSesija, btnMongo);
     }
 
     private void addElemenets() {
@@ -46,5 +49,6 @@ public class HomeView extends BorderPane {
         btnEksperimenti.setOnAction(new Eksperimentcnt(this));
         btnEksperimenti2.setOnAction(new Statuscnt());
         btnSesija.setOnAction(new Sesijacnt());
+        btnMongo.setOnAction(new MongoCnt());
     }
 }
